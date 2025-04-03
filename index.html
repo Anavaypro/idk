@@ -27,8 +27,52 @@
 
   <!-- About Section -->
   <section id="about" class="about">
-    <h2>About Asproza</h2>
-    <p>Asproza is a platform dedicated to providing cutting-edge solutions for your needs. We focus on innovation, quality, and customer satisfaction.</p>
+    <h2>watch code...</h2>
+    <p>Q1-- ```#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_WORDS 1000
+#define MAX_WORD_LENGTH 100
+
+int compareStrings(const void *a, const void *b) {
+    return strcmp(*(const char **)a, *(const char **)b);
+}
+
+int main() {
+    FILE *inputFile = fopen("input.txt", "r");
+    FILE *outputFile = fopen("output.txt", "w");
+    char word[MAX_WORD_LENGTH], *words[MAX_WORDS];
+    int wordCount = 0;
+
+    if (!inputFile || !outputFile) return 1;
+
+    while (fscanf(inputFile, "%s", word) == 1) {
+        int duplicate = 0;
+        for (int i = 0; i < wordCount; i++) {
+            if (strcmp(words[i], word) == 0) {
+                duplicate = 1;
+                break;
+            }
+        }
+        if (!duplicate) {
+            words[wordCount] = malloc(strlen(word) + 1);
+            strcpy(words[wordCount++], word);
+        }
+    }
+    fclose(inputFile);
+
+    qsort(words, wordCount, sizeof(char *), compareStrings);
+
+    for (int i = 0; i < wordCount; i++) {
+        fprintf(outputFile, "%s\n", words[i]);
+        free(words[i]);
+    }
+    fclose(outputFile);
+
+    return 0;
+}
+```</p>
   </section>
 
   <!-- Footer -->
